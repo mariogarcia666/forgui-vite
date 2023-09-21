@@ -1,15 +1,15 @@
 <template>
-    <h1>Log In</h1>
+    <FormArea />
 </template>
 
 <script setup lang="ts">
 
+import { defineAsyncComponent } from 'vue';
+
+const FormArea = defineAsyncComponent(() => import('../modules/login-signup/layouts/FormArea.vue'))
+
 </script>
 
 <style scoped lang="scss">
-
-h1 {
-    text-align: center;
-}
 
 </style>

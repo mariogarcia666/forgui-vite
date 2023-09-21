@@ -1,10 +1,12 @@
 <template>
     <div class="header-layout">
-        <img src="../assets/forgui-logo-dark.svg" alt="Forgui Logo" class="logo">
+        <ForguiLogo />
     </div>
 </template>
 
 <script setup lang="ts">
+
+import ForguiLogo from '../components/ForguiLogo.vue'
 
 </script>
 
@@ -18,14 +20,13 @@
     box-shadow: 0px 0px 0px 1px #ffffff5b;
     display: flex;
     justify-content: center;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
 }
 
 @media (prefers-color-scheme: light) {
     :root {
         .header-layout {
             box-shadow: 0px 0px 0px 1px #0000005b;
+            background-color: #fff;
         }
     }
 }
