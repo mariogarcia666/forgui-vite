@@ -1,16 +1,12 @@
 <template>
     <ion-content>
-        <h1>Maps Layout</h1>
-        <FabButton />
+        <h1>Category Layout</h1>
     </ion-content>
 </template>
 
 <script setup lang="ts">
 
-import FabButton from '../../../components/FabButton.vue';
-
 import { IonContent } from '@ionic/vue'
-
 
 </script>
 

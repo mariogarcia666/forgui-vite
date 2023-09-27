@@ -13,6 +13,7 @@
 
     img {
         width: fit-content;
+        cursor: pointer;
     }
 }
 

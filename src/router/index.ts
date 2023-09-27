@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from "vue-router"
 import { RouteRecordRaw } from "vue-router"
 
 import formsRouter from '../modules/login-signup/router/index'
+import homeRouter from '../modules/home/router/index'
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -16,21 +17,7 @@ const routes: Array<RouteRecordRaw> = [
 
     {
         path: '/home',
-        name: 'home',
-        redirect: '/home/tab1',
-        component: () => import('../views/HomeView.vue'),
-        children: [
-            {
-                path: 'tab1',
-                name: 'Tab1',
-                component: () => import('../modules/posts/layouts/PostsLayout.vue')
-            },
-            {   
-                path: 'tab2',
-                name: 'Tab2',
-                component: () => import('../modules/maps/layouts/MapsLayout.vue')
-            }
-        ]
+        ...homeRouter
     },
 
     // redirect to a PageNotFound page if the route doesn't match
