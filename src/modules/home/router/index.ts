@@ -23,7 +23,12 @@ export default {
         {
             path: '/home/profile',
             name: 'Profile',
-            component: () => import('../../profile/layouts/ProfileLayout.vue')
+            component: () => import('../../profile/layouts/ProfileLayout.vue'),
+        },
+        {
+            path: '/home/edit',
+            name: 'Edit Profile',
+            component: () => import('../../profile/layouts/EditProfileLayout.vue')
         }
     ]
 }
