@@ -1,12 +1,14 @@
 import { createStore } from 'vuex'
 
-const store = createStore({
-    state() {
-        return {
-            name: 'Mario',
-            lastname: 'García'
-        }
+import placesModule from './places'
+import { PlacesState } from './places/state'
+
+export interface StateInterface {
+    places: PlacesState
+}
+
+export default createStore<StateInterface>({
+    modules: {
+        places: placesModule
     }
 })
-
-export default store

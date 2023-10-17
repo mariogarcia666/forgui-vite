@@ -22,6 +22,10 @@ import '@ionic/vue/css/text-transformation.css';
 import '@ionic/vue/css/flex-utils.css';
 import '@ionic/vue/css/display.css';
 
+if ( !navigator.geolocation ) {
+    throw new Error("No jala we")
+}
+
 
 // MOUNTING THE APP
 createApp(App)

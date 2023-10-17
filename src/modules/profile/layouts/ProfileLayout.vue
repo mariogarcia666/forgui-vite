@@ -9,7 +9,7 @@
                     </div>
                     <h4>Mario Alberto García</h4>
                     <p>Ut irure minim velit aliqua veniam deserunt anim velit tempor dolore enim pariatur.</p>
-                    
+
                 </div>
                 <div class="details">
                     <h6>Detalles</h6>
@@ -27,7 +27,11 @@
                             <ion-label>garciasernamarioalberto@gmail.com</ion-label>
                         </ion-item>
                     </ion-list>
-                    <button class="btn btn-primary">Editar perfil</button>
+                    <button 
+                        @click="toEdit" 
+                        class="btn btn-tertiary">
+                        Editar perfil
+                    </button>
                 </div>
             </div>
         </ion-content>
@@ -38,6 +42,8 @@
 import { IonContent, IonList, IonItem, IonLabel }  from '@ionic/vue'
 
 import { home, call, mail } from 'ionicons/icons'
+
+import { toEdit } from '../helpers/functions'
 
 </script>
 
