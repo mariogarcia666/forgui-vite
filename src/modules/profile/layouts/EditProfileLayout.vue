@@ -29,7 +29,7 @@
 
 import { IonContent, IonInput, IonTextarea } from '@ionic/vue';
 
-import { toProfile } from '../helpers/functions'
+import { toProfile } from '../../../helpers/routerFunc'
 
 </script>
 

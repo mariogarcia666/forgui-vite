@@ -1,6 +1,9 @@
 <template>
     <ion-content>
-        <h1>Posts Layout</h1>
+        <h3>Publicaciones recientes</h3>
+        <div class="container">
+            <CardLayout />
+        </div>
         <FabButton />
     </ion-content>
 </template>
@@ -8,6 +11,7 @@
 <script setup lang="ts">
 
 import FabButton from '../../../components/FabButton.vue';
+import CardLayout from './CardLayout.vue'
 
 import { IonContent } from '@ionic/vue'
 
@@ -15,7 +19,7 @@ import { IonContent } from '@ionic/vue'
 
 <style scoped lang="scss">
 
-h1 {
+h3 {
     text-align: center;
 }
 
