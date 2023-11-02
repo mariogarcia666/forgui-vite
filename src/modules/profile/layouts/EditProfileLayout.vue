@@ -29,7 +29,7 @@
 
 import { IonContent, IonInput, IonTextarea } from '@ionic/vue';
 
-import { toProfile } from '../helpers/functions'
+import { toProfile } from '../../../helpers/routerFunc'
 
 </script>
 
@@ -68,4 +68,17 @@ ion-textarea {
     text-align: center;
 }
 
+@media(prefers-color-scheme: dark) {
+    :root {
+        ion-input {
+            --background: #242424;
+            --color: #eeeeee;
+        }
+
+        ion-textarea {
+            --background: #242424;
+            --color: #eeeeee;
+        }
+    }
+}
 </style>

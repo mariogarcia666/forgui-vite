@@ -1,5 +1,5 @@
 <template>
-    <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab slot="fixed" vertical="bottom" horizontal="end" @click="toCreate">
         <ion-fab-button>
             <ion-icon :icon="add"></ion-icon>
         </ion-fab-button>
@@ -9,6 +9,8 @@
 <script setup lang="ts">
 
 import { IonFab, IonFabButton } from '@ionic/vue'
+
+import { toCreate } from '../helpers/routerFunc'
 
 import { add } from 'ionicons/icons'
 

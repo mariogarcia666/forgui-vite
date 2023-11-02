@@ -22,7 +22,7 @@
 <script  setup lang="ts">
 
 import { IonGrid, IonRow, IonCol } from '@ionic/vue'
-import { toLogin, toSignup } from '../helpers/functions';
+import { toLogin, toSignup } from '../../../helpers/routerFunc';
 
 import { ref } from 'vue'
 

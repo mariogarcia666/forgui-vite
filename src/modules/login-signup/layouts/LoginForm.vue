@@ -38,7 +38,7 @@
 
 import SubmitButton from '../components/SubmitButton.vue';
 import { IonInput } from '@ionic/vue'
-import { toHome } from '../helpers/functions';
+import { toHome } from '../../../helpers/routerFunc';
 import ForguiLogo from '../../../components/ForguiLogo.vue';
 
 </script>

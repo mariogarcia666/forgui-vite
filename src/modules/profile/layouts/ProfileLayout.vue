@@ -43,7 +43,7 @@ import { IonContent, IonList, IonItem, IonLabel }  from '@ionic/vue'
 
 import { home, call, mail } from 'ionicons/icons'
 
-import { toEdit } from '../helpers/functions'
+import { toEdit } from '../../../helpers/routerFunc'
 
 </script>
 

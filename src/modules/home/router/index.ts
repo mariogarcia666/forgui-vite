@@ -10,6 +10,21 @@ export default {
             component: () => import('../../posts/layouts/PostsLayout.vue')
         },
         {
+            path: '/home/create',
+            name: 'Create Post',
+            component: () => import('../../posts/layouts/NewPostLayout.vue')
+        },
+        {
+            path: '/home/favorites',
+            name: 'Favorites',
+            component: () => import('../../posts/layouts/FavPostsLayout.vue')
+        },
+        {
+            path: '/home/notifications',
+            name: 'Notifications',
+            component: () => import('../../profile/layouts/NotificationsLayout.vue')
+        },
+        {
             path: '/home/category',
             name: 'Category',
             component: () => import('../../category/layouts/CategoryLayout.vue')

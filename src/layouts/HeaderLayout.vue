@@ -1,8 +1,8 @@
 <template>
     <div class="header-layout">
         <ForguiLogo class="logo"/>
-        <ion-icon :icon="heart"></ion-icon>
-        <ion-icon :icon="notifications"></ion-icon>
+        <ion-icon :icon="heart" @click="toFav"></ion-icon>
+        <ion-icon :icon="notifications" @click="toNotifications"></ion-icon>
     </div>
 </template>
 
@@ -13,6 +13,8 @@ import ForguiLogo from '../components/ForguiLogo.vue'
 import { IonIcon } from '@ionic/vue'
 
 import { heart, notifications } from 'ionicons/icons'
+
+import { toFav, toNotifications } from '../helpers/routerFunc';
 
 </script>
 
