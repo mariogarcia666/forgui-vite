@@ -5,15 +5,12 @@ import User from "../models/UsersModel";
 
 const bcrypt = require('bcrypt');
 const router = Router();
+
 router.get("/Estate",async (req,res)=>{
     const task = await Estate.find();
     res.send(task)
 });
 
-router.get("/register",async (req,res)=>{
-  const task = await User.find();
-  res.send(task)
-});
     
 router.post("/Estate",async (req,res)=>{
     const{ImgURL, title, author, date, ubication, type, status, description, price, lapse} = req.body;
@@ -22,13 +19,47 @@ router.post("/Estate",async (req,res)=>{
     res.json(estate)
 });
 
+router.get("/Estate/:id",async(req,res)=>{
+  try{
+      const estate = await Estate.findById(req.params.id);
+      if(!estate) return res.status(404).json({message: "Task not found"})
+
+      return res.send(estate)
+  }catch(error){
+      return res.status(500).send(error);
+  }
+});
+
+router.delete("/Estate/:id",async(req,res)=>{
+  try{
+      const estate = await Estate.findByIdAndDelete(req.params.id);
+      if(!estate) return res.status(404).json({message: "Task not found"})
+
+      return res.send(estate)
+  }catch(error){
+      return res.status(500).send(error);
+  }
+});
+  
+router.put("/Estate/:id", async (req,res)=>{
+  const updatedEstate = await Estate.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+  })
+  res.json(updatedEstate);
+});
+  
+
+router.get("/register",async (req,res)=>{
+  const task = await User.find();
+  res.send(task)
+});
+
 router.post('/register', async (req, res) => {
 
    try {
     
-      const { name, lastname, username, email, passw, imgURL, description, phone } = req.body;
+      const { name,username, email, passw, imgURL, description, phone } = req.body;
   
-      // Verificar si el usuario ya está registrado
       /*const existingUser = await User.findOne({ username });
       if (existingUser) {
         return res.status(409).json({ error: 'El usuario ya existe' });
@@ -38,7 +69,6 @@ router.post('/register', async (req, res) => {
   
       const newUser = new User({
         name, 
-        lastname, 
         username, 
         email, 
         passw : hashedPassword ,
@@ -55,6 +85,39 @@ router.post('/register', async (req, res) => {
       return res.status(500).send(error)
     }
   });
+
+  
+
+router.put('/update/:id', async (req, res) => {
+  try {
+    const userId = req.params.id;
+    const { name, username, email, passw, imgURL, description, phone } = req.body;
+
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ error: 'Usuario no encontrado' });
+    }
+
+    user.name = name;
+    user.username = username;
+    user.email = email;
+    user.imgURL = imgURL;
+    user.description = description;
+    user.phone = phone;
+
+    if (passw) {
+      const hashedPassword = await bcrypt.hash(passw, 10);
+      user.passw = hashedPassword;
+    }
+
+    await user.save();
+
+    res.json(user);
+  } catch (error) {
+    return res.status(500).send(error);
+  }
+});
   
   
   router.post('/login', async (req, res) => {
@@ -79,34 +142,6 @@ router.post('/register', async (req, res) => {
     }
   });
 
-router.get("/Estate/:id",async(req,res)=>{
-    try{
-        const estate = await Estate.findById(req.params.id);
-        if(!estate) return res.status(404).json({message: "Task not found"})
 
-        return res.send(estate)
-    }catch(error){
-        return res.status(500).send(error);
-    }
-});
-
-router.delete("/Estate/:id",async(req,res)=>{
-    try{
-        const estate = await Estate.findByIdAndDelete(req.params.id);
-        if(!estate) return res.status(404).json({message: "Task not found"})
-
-        return res.send(estate)
-    }catch(error){
-        return res.status(500).send(error);
-    }
-});
-    
-router.put("/Estate/:id", async (req,res)=>{
-    const updatedEstate = await Estate.findByIdAndUpdate(req.params.id, req.body, {
-        new: true,
-    })
-    res.json(updatedEstate);
-});
-    
 
 export default router;

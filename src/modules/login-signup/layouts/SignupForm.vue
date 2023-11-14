@@ -5,50 +5,59 @@
         <p>¡Crea tu cuenta en Forgui!</p>
 
         <ForguiLogo />
-        
-        <ion-input 
-            label="Nombre completo" 
-            label-placement="floating" 
-            fill="outline"
-            required="true"
-        ></ion-input>
-        
-        <ion-input 
-            label="Nombre de usuario" 
-            label-placement="floating" 
-            fill="outline"
-            required="true"
-        ></ion-input>
-        
-        <ion-input
-            ref="input"
-            type="email"
-            label="Correo electrónico"
-            label-placement="floating"
-            error-text="Correo inválido"
-            fill="outline"
-            @ionInput="validate"
-            @ionBlur="markTouched"
-            required="true"
-        ></ion-input>
-        
-        <ion-input 
-            label="Contraseña" 
-            type="password" 
-            label-placement="floating"
-            fill="outline" 
-            required="true"
-        ></ion-input>
-        
-        <ion-input 
-            label="Confirmar contraseña" 
-            type="password" 
-            label-placement="floating"
-            fill="outline"
-            required="true"
-        ></ion-input>
-        
-        <SubmitButton text="Registrarse"/>
+
+        <form class="signup-area" @submit.prevent="signUp">
+
+            <ion-input 
+                label="Nombre completo" 
+                label-placement="floating" 
+                fill="outline"
+                required="true"
+                v-model="name" 
+            ></ion-input>
+            
+            <ion-input 
+                label="Nombre de usuario" 
+                label-placement="floating" 
+                fill="outline"
+                required="true"
+                v-model="username"
+            ></ion-input>
+            
+            <ion-input
+                ref="input"
+                type="email"
+                label="Correo electrónico"
+                label-placement="floating"
+                error-text="Correo inválido"
+                fill="outline"
+                @ionInput="validate"
+                @ionBlur="markTouched"
+                required="true"
+                v-model="email"
+
+            ></ion-input>
+            
+            <ion-input 
+                label="Contraseña" 
+                type="password" 
+                label-placement="floating"
+                fill="outline" 
+                required="true"
+                v-model="passw"
+            ></ion-input>
+            
+            <ion-input 
+                label="Confirmar contraseña" 
+                type="password" 
+                label-placement="floating"
+                fill="outline"
+                required="true"
+                v-model="cpassw"
+            ></ion-input>
+            
+            <SubmitButton text="Registrarse"/>
+        </form>
     </div>
 
 </template>
@@ -91,7 +100,42 @@ import { defineComponent } from 'vue';
 import SubmitButton from '../components/SubmitButton.vue';
 import { IonInput } from '@ionic/vue'
 import ForguiLogo from '../../../components/ForguiLogo.vue';
+import { ref } from 'vue';
+import axios from 'axios';
+import { useRouter } from 'vue-router';
 
+  const name = ref('')
+  const username = ref('')
+  const email = ref('')
+  const passw = ref('')
+  const cpassw = ref('')
+  const imgURL = ref('http')
+  const description = ref('¡Nuevo por aquí!')
+  const phone = ref('4951333768')
+
+  const router = useRouter()
+
+  const signUp = async () => {
+
+    try {      const response = await axios.post('http://localhost:3000/api/register', {
+        name: name.value,
+        username: username.value,
+        email: email.value,
+        passw: passw.value,
+        cpassw: cpassw.value,
+        imgURL: imgURL.value,
+        description: description.value,
+        phone: phone.value
+      })
+
+      console.log(response.data)
+      console.log('Pasó la petición')
+
+      router.push('/login')
+    } catch (error) {
+      console.error('Error al registrar el usuario:', error)
+    }
+  }
 </script>
 
 <style scoped lang="scss">
