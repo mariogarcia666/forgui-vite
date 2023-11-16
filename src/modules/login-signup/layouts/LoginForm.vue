@@ -11,7 +11,6 @@
                 label="Nombre de usuario" 
                 label-placement="floating" 
                 fill="outline"
-                required="true"
                 v-model="username"
             ></ion-input>
 
@@ -20,15 +19,16 @@
                 type="password" 
                 label-placement="floating"
                 fill="outline"
-                required="true"
                 v-model="passw"
 
             ></ion-input>
 
-            <SubmitButton 
+            <!-- <SubmitButton 
                 text="Ingresar"
                 @click="toHome"
-            />
+            /> -->
+
+            <button class="btn btn-primary" type="submit">Ingresar</button>
 
         <p>¿Olvidaste tu contraseña?
             <a href="/">Haz click aquí...</a>
@@ -47,6 +47,9 @@ import ForguiLogo from '../../../components/ForguiLogo.vue';
 import { ref } from 'vue'
 import axios from 'axios';
 
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
 
 const username = ref('')
 const passw = ref('')
@@ -57,6 +60,8 @@ const Login = async () => {
         username: username.value,
         passw: passw.value
       })
+      router.push('/home/posts')
+
       console.log(user.data)
     } catch (error) {
       console.error( error)

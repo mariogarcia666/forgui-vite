@@ -56,7 +56,7 @@
                 v-model="cpassw"
             ></ion-input>
             
-            <SubmitButton text="Registrarse"/>
+            <button class="btn btn-primary" type="submit">Ingresar</button>
         </form>
     </div>
 
@@ -131,7 +131,7 @@ import { useRouter } from 'vue-router';
       console.log(response.data)
       console.log('Pasó la petición')
 
-      router.push('/login')
+      router.push('/form/login-form')
     } catch (error) {
       console.error('Error al registrar el usuario:', error)
     }
