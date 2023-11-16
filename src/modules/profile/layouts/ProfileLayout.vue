@@ -33,6 +33,13 @@
                         Editar perfil
                     </button>
                 </div>
+                <div>
+                    <button 
+                        @click="toLogin"
+                        class="btn btn-danger">
+                        Cerrar sesión
+                    </button>
+                </div>
             </div>
         </ion-content>
 </template>
@@ -43,7 +50,7 @@ import { IonContent, IonList, IonItem, IonLabel }  from '@ionic/vue'
 
 import { home, call, mail } from 'ionicons/icons'
 
-import { toEdit } from '../../../helpers/routerFunc'
+import { toEdit, toLogin } from '../../../helpers/routerFunc'
 
 </script>
 
@@ -104,7 +111,7 @@ import { toEdit } from '../../../helpers/routerFunc'
         }
 
         button {
-            margin: 2em 10px 0 10px;
+            margin: 2em 10px 2em 10px;
         }
     }
 }

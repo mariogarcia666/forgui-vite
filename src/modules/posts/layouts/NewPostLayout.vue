@@ -56,7 +56,6 @@ import { toHome } from '../../../helpers/routerFunc';
 <style scoped lang="scss">
 
 h3 {
-    margin-top: 1em;
     text-align: center;
 }
 
