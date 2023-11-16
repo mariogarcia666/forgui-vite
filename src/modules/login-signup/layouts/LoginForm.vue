@@ -6,30 +6,34 @@
 
         <ForguiLogo />
 
-        <ion-input 
-            label="Nombre de usuario" 
-            label-placement="floating" 
-            fill="outline"
-            required="true"
-        ></ion-input>
+        <form class="login-area" @submit.prevent="Login">
+            <ion-input 
+                label="Nombre de usuario" 
+                label-placement="floating" 
+                fill="outline"
+                v-model="username"
+            ></ion-input>
 
-        <ion-input 
-            label="Contraseña"
-            type="password" 
-            label-placement="floating"
-            fill="outline"
-            required="true"
-        ></ion-input>
+            <ion-input 
+                label="Contraseña"
+                type="password" 
+                label-placement="floating"
+                fill="outline"
+                v-model="passw"
 
-        <SubmitButton 
-            text="Ingresar"
-            @click="toHome"
-        />
+            ></ion-input>
+
+            <!-- <SubmitButton 
+                text="Ingresar"
+                @click="toHome"
+            /> -->
+
+            <button class="btn btn-primary" type="submit">Ingresar</button>
 
         <p>¿Olvidaste tu contraseña?
             <a href="/">Haz click aquí...</a>
         </p>
-
+    </form>
     </div>
 
 </template>
@@ -40,6 +44,30 @@ import SubmitButton from '../components/SubmitButton.vue';
 import { IonInput } from '@ionic/vue'
 import { toHome } from '../../../helpers/routerFunc';
 import ForguiLogo from '../../../components/ForguiLogo.vue';
+import { ref } from 'vue'
+import axios from 'axios';
+
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
+
+const username = ref('')
+const passw = ref('')
+
+const Login = async () => {
+  try {
+      const user = await axios.post('http://localhost:3000/api/login', {
+        username: username.value,
+        passw: passw.value
+      })
+      router.push('/home/posts')
+
+      console.log(user.data)
+    } catch (error) {
+      console.error( error)
+    }
+}
+
 
 </script>
 
