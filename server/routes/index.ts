@@ -59,7 +59,7 @@ router.post('/register', async (req, res) => {
    try {
     
       const { name,username, email, passw, imgURL, description, phone } = req.body;
-  
+
       /*const existingUser = await User.findOne({ username });
       if (existingUser) {
         return res.status(409).json({ error: 'El usuario ya existe' });

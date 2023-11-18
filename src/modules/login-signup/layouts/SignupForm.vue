@@ -12,7 +12,6 @@
                 label="Nombre completo" 
                 label-placement="floating" 
                 fill="outline"
-                required="true"
                 v-model="name" 
             ></ion-input>
             
@@ -20,7 +19,6 @@
                 label="Nombre de usuario" 
                 label-placement="floating" 
                 fill="outline"
-                required="true"
                 v-model="username"
             ></ion-input>
             
@@ -31,9 +29,6 @@
                 label-placement="floating"
                 error-text="Correo inválido"
                 fill="outline"
-                @ionInput="validate"
-                @ionBlur="markTouched"
-                required="true"
                 v-model="email"
 
             ></ion-input>
@@ -43,7 +38,6 @@
                 type="password" 
                 label-placement="floating"
                 fill="outline" 
-                required="true"
                 v-model="passw"
             ></ion-input>
             
@@ -52,7 +46,6 @@
                 type="password" 
                 label-placement="floating"
                 fill="outline"
-                required="true"
                 v-model="cpassw"
             ></ion-input>
             
@@ -64,40 +57,12 @@
 
 <script lang="ts">
 
-import { defineComponent } from 'vue';
 
-  export default defineComponent({
-    methods: {
-      validateEmail(email: String) {
-        return email.match(
-            /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        );
-      },
-
-      validate(ev: Event) {
-        const value = ev.target.value;
-
-        this.$refs.input.$el.classList.remove('ion-valid');
-        this.$refs.input.$el.classList.remove('ion-invalid');
-
-        if (value === '') return;
-
-        this.validateEmail(value)
-          ? this.$refs.input.$el.classList.add('ion-valid')
-          : this.$refs.input.$el.classList.add('ion-invalid');
-      },
-
-      markTouched() {
-        this.$refs.input.$el.classList.add('ion-touched');
-      },
-    },
-  });
 
 </script>
 
 <script setup lang="ts">
 
-import SubmitButton from '../components/SubmitButton.vue';
 import { IonInput } from '@ionic/vue'
 import ForguiLogo from '../../../components/ForguiLogo.vue';
 import { ref } from 'vue';

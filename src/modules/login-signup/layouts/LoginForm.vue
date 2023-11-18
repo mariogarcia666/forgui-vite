@@ -40,13 +40,10 @@
 
 <script setup lang="ts">
 
-import SubmitButton from '../components/SubmitButton.vue';
 import { IonInput } from '@ionic/vue'
-import { toHome } from '../../../helpers/routerFunc';
 import ForguiLogo from '../../../components/ForguiLogo.vue';
 import { ref } from 'vue'
 import axios from 'axios';
-
 import { useRouter } from 'vue-router';
 
 const router = useRouter()
