@@ -1,4 +1,4 @@
-import  express  from "express"
+import express from "express"
 import morgan from "morgan"
 import cors from 'cors'
 import tasksroutes from './routes'
@@ -6,9 +6,15 @@ import tasksroutes from './routes'
 const session = require('express-session')
 const app = express();
 
+const whiteList = [
+    'http://localhost:8100',
+    'http://localhost:5173'
+]
+
 app.use(cors({
-    origin: 'http://localhost:8100'
+    origin: whiteList
 }));
+
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended:false}));
