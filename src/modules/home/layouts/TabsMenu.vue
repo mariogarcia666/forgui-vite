@@ -16,7 +16,7 @@
 <script setup lang="ts">
 
 import { home, map, search, person } from 'ionicons/icons'
-
+import { IonIcon } from '@ionic/vue';
 
 import { ref } from 'vue'
 import router from '../../../router/index';

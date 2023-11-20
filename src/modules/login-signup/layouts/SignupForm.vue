@@ -49,7 +49,7 @@
                 v-model="cpassw"
             ></ion-input>
             
-            <button class="btn btn-primary" type="submit">Ingresar</button>
+            <button class="btn btn-tertiary" type="submit">Ingresar</button>
         </form>
     </div>
 
@@ -119,6 +119,15 @@ ion-input {
     --highlight-color-focused: #cb5cec;
     --color: #3b3b3b;
     --padding-start: 1em;
+}
+
+button {
+    width: 100%;
+    margin: 1em 0 1em 0;
+    color: white;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: 500;
 }
 
 

@@ -46,7 +46,7 @@
 
 <script setup lang="ts">
 
-import { IonContent, IonList, IonItem, IonLabel }  from '@ionic/vue'
+import { IonIcon, IonContent, IonList, IonItem, IonLabel }  from '@ionic/vue'
 
 import { home, call, mail } from 'ionicons/icons'
 

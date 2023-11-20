@@ -23,12 +23,11 @@
 
             ></ion-input>
 
-            <!-- <SubmitButton 
-                text="Ingresar"
-                @click="toHome"
-            /> -->
+            <p class="errorMessage">Usuario o contraseña incorrectos.
+                <br>Intente de nuevo.
+            </p>
 
-            <button class="btn btn-primary" type="submit">Ingresar</button>
+            <button class="btn btn-tertiary" type="submit">Ingresar</button>
 
         <p>¿Olvidaste tu contraseña?
             <a href="/">Haz click aquí...</a>
@@ -50,6 +49,7 @@ const router = useRouter()
 
 const username = ref('')
 const passw = ref('')
+const errorMessage = ref(null)
 
 const Login = async () => {
   try {
@@ -58,10 +58,14 @@ const Login = async () => {
         passw: passw.value
       })
       router.push('/home/posts')
-
       console.log(user.data)
     } catch (error) {
-      console.error( error)
+      console.error( error )
+      errorMessage.value = document.querySelector('.errorMessage')
+      if (errorMessage.value) {
+        errorMessage.value.style.color = 'red'
+        errorMessage.value.style.display = 'block'
+      }
     }
 }
 
@@ -86,9 +90,27 @@ ion-input {
     --padding-start: 1em;
 }
 
+button {
+    width: 100%;
+    margin: 1em 0 1em 0;
+    color: white;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
 a {
     text-decoration: none;
     color: #cb5cec;
+}
+
+.errorMessage {
+    text-align: center;
+    font-style: normal;
+    font-size: 1em;
+    margin: 0;
+    color: #ca0000;
+    display: none;
 }
 
 

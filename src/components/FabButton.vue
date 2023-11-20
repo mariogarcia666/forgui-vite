@@ -8,7 +8,7 @@
 
 <script setup lang="ts">
 
-import { IonFab, IonFabButton } from '@ionic/vue'
+import { IonIcon, IonFab, IonFabButton } from '@ionic/vue'
 
 import { toCreate } from '../helpers/routerFunc'
 

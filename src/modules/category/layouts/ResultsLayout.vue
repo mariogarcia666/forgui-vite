@@ -1,18 +1,17 @@
 <template>
-
-    <Card2 />
+    <OneCardLayout class="results-cards" />
 </template>
 
 <script setup lang="ts">
 
-import Card2 from '../../posts/layouts/Card2.vue';
+import OneCardLayout from '../../posts/layouts/OneCardLayout.vue.vue'
 
 </script>
 
 <style scoped lang="scss">
 
-.semen {
-    
+.results-cards {
+    display: none;
 }
 
 </style>
