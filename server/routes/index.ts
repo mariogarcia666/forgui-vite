@@ -7,15 +7,14 @@ const bcrypt = require('bcrypt');
 const router = Router();
 
 router.get("/Estate",async (req,res)=>{
-    const task = await Estate.find();
-    res.send(task)
+    const tasks = await Estate.find();
+    res.send(tasks)
 });
-
     
-router.post("/Estate",async (req,res)=>{
-    const{ImgURL, title, author, date, ubication, type, status, description, price, lapse} = req.body;
-    const estate = new Estate ({ImgURL, title, author, date, ubication, type, status, description, price, lapse});
-    await estate.save();
+router.post("/Estate", async (req,res) => {
+    const{ImgURL, title, /*author*/ type, status, description, ubication, price, lapse, postDate} = req.body
+    const estate = new Estate ({ImgURL, title, /*author*/ type, status, description, ubication, price, lapse, postDate})
+    await estate.save()
     res.json(estate)
 });
 
@@ -58,7 +57,7 @@ router.post('/register', async (req, res) => {
 
    try {
     
-      const { name,username, email, passw, imgURL, description, phone } = req.body;
+      const { name, username, email, passw, imgURL, description, phone } = req.body;
 
       /*const existingUser = await User.findOne({ username });
       if (existingUser) {

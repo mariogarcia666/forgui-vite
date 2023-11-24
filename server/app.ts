@@ -2,6 +2,7 @@ import express from "express"
 import morgan from "morgan"
 import cors from 'cors'
 import tasksroutes from './routes'
+import bodyParser from "body-parser"
 
 const session = require('express-session')
 const app = express();
@@ -14,6 +15,9 @@ const whiteList = [
 app.use(cors({
     origin: whiteList
 }));
+
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
 app.use(morgan("dev"));
 app.use(express.json());

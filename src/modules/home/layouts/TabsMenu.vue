@@ -15,7 +15,7 @@
 
 <script setup lang="ts">
 
-import { home, map, search, person } from 'ionicons/icons'
+import { home, search, person } from 'ionicons/icons'
 import { IonIcon } from '@ionic/vue';
 
 import { ref } from 'vue'
@@ -23,7 +23,6 @@ import router from '../../../router/index';
 
 const tabs = ref([
     { title: 'post', icon: home },
-    { title: 'map', icon: map },
     { title: 'category', icon: search },
     { title: 'profile', icon: person, },
 ])
@@ -37,12 +36,9 @@ const navigateToTab = (index: number) => {
             router.push('/home/posts')
             break
         case 1:
-            router.push('/home/map')
-            break
-        case 2:
             router.push('/home/category')
             break
-        case 3:
+        case 2:
             router.push('/home/profile')
             break
     }
@@ -55,7 +51,7 @@ const navigateToTab = (index: number) => {
 .nav-item {
     background-color: #fff;
     cursor: pointer;
-    width: 25%;
+    width: 33%;
     text-align: center;
     font-size: 25px;
     border-top: 1px solid #afafaf;

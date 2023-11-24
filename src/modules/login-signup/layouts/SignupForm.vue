@@ -55,12 +55,6 @@
 
 </template>
 
-<script lang="ts">
-
-
-
-</script>
-
 <script setup lang="ts">
 
 import { IonInput } from '@ionic/vue'
@@ -74,7 +68,7 @@ import { useRouter } from 'vue-router';
   const email = ref('')
   const passw = ref('')
   const cpassw = ref('')
-  const imgURL = ref('http')
+  const imgURL = ref('https://www.murrayglass.com/wp-content/uploads/2020/10/avatar-2048x2048.jpeg')
   const description = ref('¡Nuevo por aquí!')
   const phone = ref('4951333768')
 
@@ -82,25 +76,27 @@ import { useRouter } from 'vue-router';
 
   const signUp = async () => {
 
-    try {      const response = await axios.post('http://localhost:3000/api/register', {
-        name: name.value,
-        username: username.value,
-        email: email.value,
-        passw: passw.value,
-        cpassw: cpassw.value,
-        imgURL: imgURL.value,
-        description: description.value,
-        phone: phone.value
-      })
+    try {      
+        const response = await axios.post('http://localhost:3000/api/register', {
+            name: name.value,
+            username: username.value,
+            email: email.value,
+            passw: passw.value,
+            cpassw: cpassw.value,
+            imgURL: imgURL.value,
+            description: description.value,
+            phone: phone.value
+        })
 
-      console.log(response.data)
-      console.log('Pasó la petición')
+        console.log(response.data)
+        console.log('Pasó la petición')
 
-      router.push('/form/login-form')
+        router.push('/form/login-form')
     } catch (error) {
-      console.error('Error al registrar el usuario:', error)
+        console.error('Error al registrar el usuario:', error)
     }
-  }
+}
+
 </script>
 
 <style scoped lang="scss">

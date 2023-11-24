@@ -11,21 +11,11 @@ const EstateSchema = new Schema({
         required: true,
         trim: true
     },
-    author:{
-        type: String,
-        required: true,
-        trim: true
-    },
-    date:{
-        type: String,
-        required: true,
-        trim: true
-    },
-    ubication:{
-        type: String,
-        required: true,
-        trim: true
-    },
+    // author:{
+    //     type: String,
+    //     required: true,
+    //     trim: true
+    // },
     type:{
         type: String,
         required: true,
@@ -41,6 +31,11 @@ const EstateSchema = new Schema({
         required: true,
         trim: true
     }, 
+    ubication:{
+        type: String,
+        required: true,
+        trim: true
+    }, 
     price:{
         type: String,
         require:true,
@@ -51,8 +46,11 @@ const EstateSchema = new Schema({
         required: true,
         trim: true
     },
-   
-
+    postDate: {
+        type: String,
+        required: true,
+        trim: true
+    }
 },
 {
     versionKey: false

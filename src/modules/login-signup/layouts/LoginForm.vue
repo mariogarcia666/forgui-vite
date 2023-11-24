@@ -40,16 +40,17 @@
 <script setup lang="ts">
 
 import { IonInput } from '@ionic/vue'
-import ForguiLogo from '../../../components/ForguiLogo.vue';
+import ForguiLogo from '../../../components/ForguiLogo.vue'
 import { ref } from 'vue'
-import axios from 'axios';
-import { useRouter } from 'vue-router';
+import axios from 'axios'
 
+import { formErrorMsg } from '../../../helpers/msgFunc'
+
+import { useRouter } from 'vue-router'
 const router = useRouter()
 
 const username = ref('')
 const passw = ref('')
-const errorMessage = ref(null)
 
 const Login = async () => {
   try {
@@ -61,11 +62,7 @@ const Login = async () => {
       console.log(user.data)
     } catch (error) {
       console.error( error )
-      errorMessage.value = document.querySelector('.errorMessage')
-      if (errorMessage.value) {
-        errorMessage.value.style.color = 'red'
-        errorMessage.value.style.display = 'block'
-      }
+      formErrorMsg()
     }
 }
 

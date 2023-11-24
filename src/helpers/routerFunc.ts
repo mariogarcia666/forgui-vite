@@ -31,3 +31,7 @@ export const toEdit = () => {
 export const toProfile = () => {
     router.push('/home/profile')
 }
+
+export const toPostDetail = (postId) => {
+    router.push({name: 'Post Detail', params: { id: postId }})
+}

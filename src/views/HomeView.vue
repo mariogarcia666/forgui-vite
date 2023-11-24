@@ -6,7 +6,6 @@
             <div v-if="activeTab === 0"></div>
             <div v-if="activeTab === 1"></div>
             <div v-if="activeTab === 2"></div>
-            <div v-if="activeTab === 3"></div>
         </tabs>
     </ion-page>
 </template>

@@ -1,9 +1,9 @@
 <template>
-    <div class="spinner">
-        <ion-spinner></ion-spinner>
-    </div>
-    <ion-card v-for="post in posts" :key="post._id">
-        <div @click="toPostDetail(post._id)">
+    <ion-content>
+        <button class="btn btn-primary" @click="toHome">
+            <ion-icon :icon="arrowBack"></ion-icon>
+        </button>
+        <ion-card>
             <ion-card-header>
                 <ion-card-title>{{ post.title }}</ion-card-title>
                 <span class="subtitle"><a href="http://localhost:5173/#/home/posts">{{ post.author }} - {{ post.postDate }}</a></span>
@@ -15,53 +15,49 @@
                 <br>
                 <p class="rude">${{ post.price }} en {{ post.status }} / {{ post.lapse }}</p>
                 <br>
-                <span class="description">{{ post.description.substring(0, 100) }}</span><span class="still-reading">... seguir leyendo.</span>
+                <span class="description">{{ post.description }}</span>
             </ion-card-content>
-        </div>
-        <ActionsButton />
-    </ion-card>
+            <ActionsButton />
+        </ion-card>
+    </ion-content>
 </template>
 
 <script setup lang="ts">
 
-import { IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonSpinner } from '@ionic/vue'
+import { IonContent, IonIcon, IonCard, IonCardContent, IonCardHeader, IonCardTitle } from '@ionic/vue'
+
+import { arrowBack } from 'ionicons/icons'
 
 import ActionsButton from '../components/ActionsButton.vue'
 
-import { toPostDetail } from '../../../helpers/routerFunc'
-import { spinnerOn, spinnerOff } from '../../../helpers/spinnerFunc'
+import { toHome } from '../../../helpers/routerFunc'
 import { ref, onMounted } from 'vue'
+import router from '../../../router'
 import axios from 'axios'
 
-const posts = ref([])
+const post = ref([])
 
 onMounted(async () => {
+    const postId = router.currentRoute.value.params.id
+
     try {
-        spinnerOn()
-        const response = await axios.get('http://localhost:3000/api/Estate')
-        posts.value = response.data
-        console.log(posts)
-        spinnerOff()
+        const response = await axios.get(`http://localhost:3000/api/Estate/${postId}`)
+        post.value = response.data
     } catch (error) {
-        console.error('Error al obtener las publicaciones: ', error)
-        spinnerOn()
+        console.error('Error al obtener el post por ID: ', error)
     }
 })
 
 </script>
 
+
 <style scoped lang="scss">
 
-.spinner {
-    margin-top: 2em;
-    display: none;
-    justify-content: center;
-
-    ion-spinner {
-        width: 2em;
-        height: 2em;
-        --color: purple;
-    }
+.btn {
+    width: 2.5em;
+    height: 2em;
+    margin: 1em 0 0 1em;
+    font-size: 20px;
 }
 
 ion-card {
@@ -79,11 +75,6 @@ ion-card {
                 color: #b88eb8;
             }
         }
-    }
-
-    .still-reading {
-        text-decoration: none;
-        color: #800080;
     }
 
     .rude {
@@ -108,12 +99,7 @@ ion-card {
             .description {
                 color: #999999;
             }
-
-            .still-reading {
-                color: #a76da7;
-            }
         }
     }
 }
-
 </style>

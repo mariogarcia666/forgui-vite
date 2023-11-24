@@ -7,7 +7,12 @@ export default {
         {
             path: '/home/posts',
             name: 'Posts',
-            component: () => import('../../posts/layouts/PostsLayout.vue')
+            component: () => import('../../posts/layouts/PostsLayout.vue'),
+        },
+        {
+            path: '/home/posts/detail/:id',
+            name: 'Post Detail',
+            component: () => import('../../posts/layouts/PostDetailLayout.vue')
         },
         {
             path: '/home/create',
@@ -28,12 +33,6 @@ export default {
             path: '/home/category',
             name: 'Category',
             component: () => import('../../category/layouts/CategoryLayout.vue')
-        },
-
-        {
-            path: '/home/map',
-            name: 'Map',
-            component: () => import('../../maps/layouts/MapsLayout.vue')
         },
         {
             path: '/home/profile',
