@@ -90,7 +90,7 @@ ion-card {
     :root {
         ion-card {
             background-color: #2e2e2e;
-            box-shadow: none;
+            box-shadow: 0px 1px 4px 1px #858585;
             
             ion-card-title, span, p {
                 color: #d3d3d3;

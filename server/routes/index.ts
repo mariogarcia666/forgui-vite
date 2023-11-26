@@ -46,6 +46,25 @@ router.put("/Estate/:id", async (req,res)=>{
   })
   res.json(updatedEstate);
 });
+
+// Method for the Category layout
+router.get('/search', async (req, res) => {
+  try {
+    const text = req.query.text;
+    const estates = await Estate.find({
+      $or: [
+        { title: { $regex: text, $options: 'i' } },
+        { description: { $regex: text, $options: 'i' } },
+        { ubication: { $regex: text, $options: 'i'}},
+      ],
+    });
+
+    res.json(estates);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send(error);
+  }
+});
   
 
 router.get("/register",async (req,res)=>{
