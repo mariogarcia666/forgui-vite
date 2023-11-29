@@ -7,8 +7,8 @@ const bcrypt = require('bcrypt');
 const router = Router();
 
 router.get("/Estate",async (req,res)=>{
-    const tasks = await Estate.find();
-    res.send(tasks)
+    const estate = await Estate.find();
+    res.send(estate)
 });
     
 router.post("/Estate", async (req,res) => {
@@ -41,11 +41,37 @@ router.delete("/Estate/:id",async(req,res)=>{
 });
   
 router.put("/Estate/:id", async (req,res)=>{
-  const updatedEstate = await Estate.findByIdAndUpdate(req.params.id, req.body, {
+  try {
+    const updatedEstate = await Estate.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
   })
-  res.json(updatedEstate);
+  return res.status(200).json({x: updatedEstate, id: req.params.id});
+  } catch {
+    return res.status(404).json({ error: 'Usuario no encontrado' });
+  }
+  
 });
+
+router.put('/update/:id', async (req, res) => {
+  try {
+    
+    const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    
+    });
+
+    if (!updatedUser) {
+      return res.status(404).json({ error: 'Usuario no encontrado' });
+    }
+
+    res.json(updatedUser);
+  } catch (error) {
+    return res.status(500).send({error:error});
+  }
+});
+
+  
+
 
 // Method for the Category layout
 router.get('/search', async (req, res) => {
@@ -78,11 +104,7 @@ router.post('/register', async (req, res) => {
     
       const { name, username, email, passw, imgURL, description, phone } = req.body;
 
-      /*const existingUser = await User.findOne({ username });
-      if (existingUser) {
-        return res.status(409).json({ error: 'El usuario ya existe' });
-      }*/
-  
+    
       const hashedPassword = await bcrypt.hash(passw, 10);
   
       const newUser = new User({
@@ -103,60 +125,35 @@ router.post('/register', async (req, res) => {
       return res.status(500).send(error)
     }
   });
-
   
-
-router.put('/update/:id', async (req, res) => {
-  try {
-    const userId = req.params.id;
-    const { name, username, email, passw, imgURL, description, phone } = req.body;
-
-    const user = await User.findById(userId);
-
-    if (!user) {
-      return res.status(404).json({ error: 'Usuario no encontrado' });
-    }
-
-    user.name = name;
-    user.username = username;
-    user.email = email;
-    user.imgURL = imgURL;
-    user.description = description;
-    user.phone = phone;
-
-    if (passw) {
-      const hashedPassword = await bcrypt.hash(passw, 10);
-      user.passw = hashedPassword;
-    }
-
-    await user.save();
-
-    res.json(user);
-  } catch (error) {
-    return res.status(500).send(error);
-  }
-});
   
   
   router.post('/login', async (req, res) => {
     try {
       const { username, passw } = req.body;
   
-      // Buscar al usuario en la base de datos
       const user = await User.findOne({ username });
       if (!user) {
-        return res.status(401).json({ error: 'Credenciales inválidas' });
+        return res.status(401).json({ message: 'Credenciales inválidas', IsUserValid: false, IdUser: 0 });
       }
   
-      // Verificar la contraseña
       const isPasswordValid = await bcrypt.compare(passw, user.passw);
       if (!isPasswordValid) {
-        return res.status(401).json({ error: 'Credenciales inválidas' });
+        return res.status(401).json({ message: 'Credenciales inválidas', IsUserValid: false, IdUser: 0 });
       }
   
-      return res.status(200).json({ message: 'Inicio de sesión exitoso' });
+      return res.status(200).json({ message: 'Inicio de sesión exitoso',
+                                    IsUserValid: true, 
+                                    IdUser: user.id,
+                                    Password: user.passw, 
+                                    Name: user.name, 
+                                    Description: user.description, 
+                                    Email: user.email, 
+                                    Phone: user.phone,
+                                    
+                                  });
     } catch (error) {
-      return res.status(500).json({ error: 'Error interno del servidor' });
+      return res.status(500).json({ message: 'Error interno del servidor', IsUserValid: false, IdUser: 0 });
     }
   });
 

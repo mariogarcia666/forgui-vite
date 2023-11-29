@@ -7,8 +7,8 @@
                             <img src="/src/img/foto-perfil.jpg" alt="">
                         </div>
                     </div>
-                    <h4>Mario Alberto García</h4>
-                    <p>Ut irure minim velit aliqua veniam deserunt anim velit tempor dolore enim pariatur.</p>
+                    <h4 >{{ Globals.user.Name }}</h4>
+                    <p>{{ Globals.user.Description }}</p>
 
                 </div>
                 <div class="details">
@@ -20,11 +20,11 @@
                         </ion-item>
                         <ion-item>
                             <ion-icon :icon="call"></ion-icon>
-                            <ion-label>+52 4951333768</ion-label>
+                            <ion-label>{{ Globals.user.Phone }}</ion-label>
                         </ion-item>
                         <ion-item>
                             <ion-icon :icon="mail"></ion-icon>
-                            <ion-label>garciasernamarioalberto@gmail.com</ion-label>
+                            <ion-label>{{ Globals.user.Email }}</ion-label>
                         </ion-item>
                     </ion-list>
                     <button 
@@ -45,12 +45,31 @@
 </template>
 
 <script setup lang="ts">
-
-import { IonIcon, IonContent, IonList, IonItem, IonLabel }  from '@ionic/vue'
-
 import { home, call, mail } from 'ionicons/icons'
-
 import { toEdit, toLogin } from '../../../helpers/routerFunc'
+import { IonIcon, IonContent, IonList, IonItem, IonLabel }  from '@ionic/vue'
+import axios from 'axios'
+import { Globals } from '../../../globals'
+import { ref } from 'vue'
+
+const username = ref('')
+const passw = ref('')
+
+
+const p = async () => {
+  try {
+      const user = await axios.post('http://localhost:3000/api/login', {
+        username: username.value,
+        passw: passw.value
+      })
+      Globals.user = user.data;
+
+
+      console.log(Globals.user)
+    } catch (error) {
+      console.error( error )
+    }
+}
 
 </script>
 

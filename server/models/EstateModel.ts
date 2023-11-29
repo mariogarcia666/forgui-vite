@@ -11,11 +11,7 @@ const EstateSchema = new Schema({
         required: true,
         trim: true
     },
-    // author:{
-    //     type: String,
-    //     required: true,
-    //     trim: true
-    // },
+   
     type:{
         type: String,
         required: true,

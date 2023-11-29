@@ -43,6 +43,7 @@ import { IonInput } from '@ionic/vue'
 import ForguiLogo from '../../../components/ForguiLogo.vue'
 import { ref } from 'vue'
 import axios from 'axios'
+import { Globals } from '../../../globals'
 
 import { formErrorMsg } from '../../../helpers/msgFunc'
 
@@ -52,6 +53,7 @@ const router = useRouter()
 const username = ref('')
 const passw = ref('')
 
+
 const Login = async () => {
   try {
       const user = await axios.post('http://localhost:3000/api/login', {
@@ -60,6 +62,8 @@ const Login = async () => {
       })
       router.push('/home/posts')
       console.log(user.data)
+      Globals.user = user.data;
+      console.log(Globals.user)
     } catch (error) {
       console.error( error )
       formErrorMsg()
