@@ -3,7 +3,7 @@
         <button class="btn btn-primary" @click="toHome">
             <ion-icon :icon="arrowBack"></ion-icon>
         </button>
-        <ion-card>
+        <ion-card v-if="post">
             <ion-card-header>
                 <ion-card-title>{{ post.title }}</ion-card-title>
                 <span class="subtitle"><a href="http://localhost:5173/#/home/posts">{{ post.author }} - {{ post.postDate }}</a></span>
@@ -35,7 +35,21 @@ import { ref, onMounted } from 'vue'
 import router from '../../../router'
 import axios from 'axios'
 
-const post = ref([])
+interface PostDetail {
+  _id: string;
+  title: string;
+  author: string;
+  postDate: string;
+  ImgURL: string;
+  ubication: string;
+  type: string;
+  price: number;
+  status: string;
+  lapse: string;
+  description: string;
+}
+
+const post = ref<PostDetail | null>(null);
 
 onMounted(async () => {
     const postId = router.currentRoute.value.params.id

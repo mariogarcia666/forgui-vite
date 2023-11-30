@@ -22,7 +22,7 @@
                 label-placement="floating"
                 fill="outline"
                 :counter="true"
-                :maxlength="250"
+                :maxlength="300"
                 v-model="description">
             </ion-textarea>
 

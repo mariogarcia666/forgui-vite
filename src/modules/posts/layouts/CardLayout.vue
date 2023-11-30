@@ -33,7 +33,21 @@ import { spinnerOn, spinnerOff } from '../../../helpers/spinnerFunc'
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
 
-const posts = ref([])
+interface Post {
+  _id: string;
+  title: string;
+  author: string;
+  postDate: string;
+  ImgURL: string;
+  ubication: string;
+  type: string;
+  price: number;
+  status: string;
+  lapse: string;
+  description: string;
+}
+
+const posts = ref<Post[]>([]);
 
 onMounted(async () => {
     try {

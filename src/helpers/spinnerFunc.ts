@@ -1,6 +1,6 @@
 import { ref } from "vue"
 
-const spinner = ref(null)
+const spinner = ref<HTMLElement | null>(null)
 
 export const spinnerOn = () => {
     spinner.value = document.querySelector('.spinner')

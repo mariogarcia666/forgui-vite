@@ -48,8 +48,22 @@ import { toPostDetail } from '../../../helpers/routerFunc'
 import { ref } from 'vue'
 import axios from 'axios'
 
+interface Results {
+  _id: string;
+  title: string;
+  author: string;
+  postDate: string;
+  ImgURL: string;
+  ubication: string;
+  type: string;
+  price: number;
+  status: string;
+  lapse: string;
+  description: string;
+}
+
 const text = ref('')
-const results = ref([])
+const results = ref<Results[]>([]);
 
 const search = async () => {
     try {

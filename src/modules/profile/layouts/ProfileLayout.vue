@@ -7,8 +7,8 @@
                             <img src="/src/img/foto-perfil.jpg" alt="">
                         </div>
                     </div>
-                    <h4 >{{ Globals.user.Name }}</h4>
-                    <p>{{ Globals.user.Description }}</p>
+                    <h4 >{{ Globals.user?.Name }}</h4>
+                    <p>{{ Globals.user?.Description }}</p>
 
                 </div>
                 <div class="details">
@@ -20,11 +20,11 @@
                         </ion-item>
                         <ion-item>
                             <ion-icon :icon="call"></ion-icon>
-                            <ion-label>{{ Globals.user.Phone }}</ion-label>
+                            <ion-label>{{ Globals.user?.Phone }}</ion-label>
                         </ion-item>
                         <ion-item>
                             <ion-icon :icon="mail"></ion-icon>
-                            <ion-label>{{ Globals.user.Email }}</ion-label>
+                            <ion-label>{{ Globals.user?.Email }}</ion-label>
                         </ion-item>
                     </ion-list>
                     <button 
